@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZhafiraFashion</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        html {
+            padding: 0%;
+            margin: 0%;
+            text-decoration: none;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior:smooth;
+
+        }
+
+        body {
+            background-image: url(background.jpeg);
+        }
+
+        .container {
+            width: 939px;
+            margin: auto;
+            background-color: rgb(255, 255, 255);
+            margin-top: 40px;
+            max-height: 700vh;
+            /* overflow: auto; */
+        }
+
+        nav {
+            /* overflow: hidden; */
+            /* background-repeat: no-repeat; */
+            background-size: cover;
+            height: 174px;
+            width: 902px;
+            border-radius: 70%;
+            display: flex;
+            background-color: #f7f7f7;
+            background-image: url(spanduk.jpeg);
+        }
+
+        nav .tulisan {
+            /* float: left; */
+            width: 50%;
+        }
+
+        /* nav .gmbr {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url(images.jpeg);
+        } */
+
+        nav .logo {
+            height: 60px;
+            display: inline-block;
+            top: -60px;
+            position: relative;
+        }
+
+        .isi {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .isi h1 {
+            margin-top: 33px;
+            width: 425px;
+            font-size: 85px;
+            line-height: 1;
+            font-family: cursive;
+            background:linear-gradient(#ffbb00 0%, #e9ec28 46%  200%);
+            background-clip: text;
+            -webkit-background-clip: text;
+        }
+
+        .pidio{
+            position: absolute;
+        }
+
+        .pilihan ul {
+            display: grid;
+            list-style: none;
+            grid-template-columns: 130px 130px 130px 130px 130px 130px;
+        }
+
+        .pilihan {
+            margin: 1rem 0;
+            background-color: ghostwhite;
+            overflow: auto;
+            margin-top:463px;
+        }
+
+        .pilihan ul li a{
+            text-decoration: none;
+            display: inline-block;
+            padding: 1rem 2rem;
+        }
+
+        .pilihan li {
+            transition: 0.1s;
+            float: left;
+        }
+
+        .pilihan li:hover {
+            background-color: #217136;
+            border-radius: 30px;
+
+        }
+
+        .pilihan li::before:hover {
+            color: white;
+        }
+
+        .main {
+            width: 650px;
+            padding: 20px;
+            box-sizing: border-box;
+            float: left;
+        }
+
+        .main h2 {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .product {
+            background-color: white;
+            border: 1px solid #ddd;
+            margin: 10px;
+            padding: 10px;
+            text-align: center;
+            width: 160px;
+            float: left;
+        }
+
+        .product h3 {
+
+            font-size: 20px;
+            font-style: italic;
+            font-weight: bolder;
+        }
+
+        .product img {
+            height: 100px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        .sidebar {
+            width: 200px;
+            float: right;
+            padding: 20px;
+        }
+
+        .sidebar h3 {
+            font-weight: bold;
+            color: #666;
+        }
+
+        .sidebar img {
+            width: 70px;
+            float: left;
+            padding-right: 10px;
+        }
+
+        .sidebar p {
+            font: 12px/18px arial;
+        }
+
+        .footer {
+            height: 16px;
+            background-color: #333;
+            padding: 20px;
+        }
+
+        .footer .copyright {
+            color: #eaeaea;
+            text-align: center;
+            font-size: 14px;
+            line-height: 4px;
+            padding: 10px;
+        }
+
+        /* Pemanfaatan Clearfix untuk mengatasi Float */
+        .of:before,
+        .cf:after {
+            content: "";
+            /* 1 */
+            display: table;
+            /* 2 */
+        }
+
+        .of:after {
+            clear: both;
+        }
+
+        .cf {
+            zoom: 1;
+        }
+
+        /*-> Modul 2 */
+
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .popup-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .popup img {
+            max-width: 100%;
+            max-height: 170px;
+            margin-bottom: 10px;
+        }
+
+        .popup h2 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .popup h3 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .popup p {
+            font-size: 16px;
+            text-align: justify;
+        }
+
+        .popup .price {
+            font-weight: bold;
+            color: #27ae60;
+            text-align: center;
+        }
+
+        .popup .tombol-beli {
+            background: #0074d9;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 34px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        #formulir-checkout {
+            background-color: #f8f8f8;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 20px;
+            width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Gaya untuk tabel formulir */
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        /* Gaya untuk input number */
+        input[type="number"],
+        select {
+            width: 20%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        /* Gaya untuk input teks */
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: 90%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 30px;
+        }
+
+        /* Gaya untuk tombol selesai pembayaran */
+        #selesaikan-pembayaran {
+            display: block;
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Gaya saat kursor berada di atas tombol */
+        #selesaikan-pembayaran:hover {
+            background-color: #9aaf3d;
+            color: #333;
+        }
+
+        /* Gaya untuk tabel daftar produk */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        /* Gaya untuk header table */
+        thead {
+            background-color: #333;
+            color: white;
+        }
+
+        thead th {
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* Gaya untuk baris tabel */
+        tbody tr:nth-child(odd) {
+            background-color: #a76a6a;
+            color: white;
+        }
+
+        tbody td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* Gaya untuk sel header */
+        thead th,
+        tbody td {
+            border: 1px solid #ddd;
+        }
+
+        /* Gaya saat kursor berada di atas baris tabel */
+        tbody tr:hover {
+            background-color: #e0e0e0;
+            color: black;
+        }
+
+        .keranjang {
+            font-size: 12px;
+        }
+
+        .keranjang a {
+            text-decoration: none;
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+        }
+
+        #shoping {
+            align-items: center;
+            display: flex;
+        }
+
+        #humburger {
+            align-items: center;
+            display: flex;
+        }
+        
+        #humburger:hover {
+            color: #c4c4c4;
+            cursor: pointer;
+        }
+
+        
+        #shoping:hover {
+            color: #ccc;
+            cursor: pointer;
+        }
+
+
+        /* @media (max-width: 768px){
+            html {
+
+            }
+        }
+        @media (max-width: 450px){
+            html {
+                font-size: 2px;
+            }
+
+            .container {
+            }
+        } */
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="tulisan"></div> 
+        </nav>
+        <div id="isi" class="isi">
+            <h1>selamat datang di toko zhafira</h1>
+            <div class="pidio">
+            <video autoplay muted style="height: 306px; width: 100%;margin-left: 100px;margin-top: 63px;">
+                <source src="vidiotanpa.mp4" type="video/mp4" />
+                Browsermu tidak mendukung tag ini, upgrade donk!
+            </video>
+            <video autoplay controls style="height: 350px; width: 80vh;margin-left: -58px;margin-top: 80px;">
+                <source src="vidiodengan.mp4" type="video/mp4"/>
+                Browsermu tidak mendukung tag ini, upgrade donk!
+            </video>
+            </div>
+        </div>
+        <div class="pilihan">
+            <ul>
+                <li><a href="#main">produk</a></li>
+                <li><a href="#isi">promo</a></li>
+                <li><a href="#">mitra </a></li>
+                <li><a href="#">kontak</a></li>
+                <i style="font-weight: bold; font-size: 24px; margin-top: 15px; margin-left: 73px;"id= "shoping" class="ph ph-shopping-cart"><a href=""></a></i>
+                <i style="font-weight: bold; font-size: 24px; margin-top: 15px; margin-left: 73px;" id="humburger" class="ph ph-list"><a href=""></a></i>
+                <ol style="width: 800px;padding: 20px;">
+                </ol>
+            </ul>
+        </div>
+        <div class="content cf">
+            <div id="main" class="main">
+                <h2>Produk Kami</h2>
+                <section  class="product" data-kategori="XL">
+                    <img src="WHITE .jpeg" alt="Produk 1">
+                    <h3>Celana BaggyPans-white</h3>
+                    <p>Size: XL</p>
+                    <p class="price">Harga : Rp.85.000</p>
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Celana BaggyPans-white','85.000','Size: XL','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','LIGHT GREY 1.jpg')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-white',85000, 'XL')">Tambahkan ke
+                        Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="S">
+                    <img src="CREAMY 3.jpg" alt="Produk 2">
+                    <h3>Celana BaggyPans-Creamy</h3>
+                    <p>Size: S</p>
+                    <p class="price">Harga : Rp.45.000</p>
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Celana BaggyPans-Creamy','45.000','Size: S','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','CREAMY 3.jpg')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang" onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-Creamy',45000, 'S')">Tambahkan
+                        Ke Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="L">
+                    <img src="CREAMY NEW 5.jpg" alt="Produk 3">
+                    <h3>Celana BaggyPans-Creamy</h3>
+                    <p>Size: L</p>
+                    <p class="price">Harga : Rp.33.000</p>
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Celana BaggyPans-Creamy','33.000','Size: L','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','CREAMY NEW 5.jpg')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang" onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-Creamy',33000, 'L')">Tambahkan Ke
+                        Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="XL">
+                    <img src="CREAMY NEW 7.jpg" alt="Produk 4">
+                    <h3>Celana BaggyPans-Creamy</h3>
+                    <p>Size: XL</p>
+                    <p class="price">Harga : Rp.125.000</p>
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Celana BaggyPans-Creamy','125.000','Size: XL','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','CREAMY NEW 7.jpg')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-Creamy',125000, 'XL')">Tambahkan Ke
+                        Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="L">
+                    <img src="DARK GREY NEW 2.jpg" alt="Produk 5">
+                    <h3>Celana BaggyPans-DarkGrey</h3>
+                    <p>Size: L</p>
+                    <p class="price">Harga : Rp.18.000</p>
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Celana BaggyPans-DarkGrey','18.000','Size: L','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','DARK GREY NEW 2.jpg')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-DarkGrey',80000, 'L')">Tambahkan Ke Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="XXL">
+                    <img src="HTM NEW 6 (2).jpg" alt="Produk 7">
+                    <h3>Celana BaggyPans-Hitam</h3>
+                    <p>Size: XXL</p>
+                    <p class="price">Harga : Rp.18.000</p>
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Celana BaggyPans-Hitam','18.000','Size: XXL','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','DARK GREY NEW 2.jpg')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-Hitam',180000, 'XXL')">Tambahkan Ke Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="S">
+                    <img src="DUSTY PINK 4.jpg" alt="Produk 6">
+                    <h3>Celana BaggyPans-DustyPink</h3>
+                    <p>Size: S</p>
+                    <p class="price">Harga : Rp.18.000</p>
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Celana BaggyPans-DustyPink','18.000','Size: S','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','DARK GREY NEW 2.jpg')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-DustyPink',60000, 'S')">Tambahkan Ke Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="S">
+                    <img src="LATTE NEW 9.jpg" alt="Produk 8">
+                    <h3>Celana BaggyPans-Latte</h3>
+                    <p>Size: S</p>
+                    <p class="price">Harga : Rp.18.000</p>
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Celana BaggyPans-Latte','18.000','Size: S','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','DARK GREY NEW 2.jpg')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-Latte',75000, 'S')">Tambahkan Ke Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="XL">
+                    <img src="MAROON NEW 2.jpg" alt="Produk 9">
+                    <h3>Celana BaggyPans-Marron</h3>
+                    <p>Size: XL</p>
+                    <p class="price">Harga : Rp.18.000</p>
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Celana BaggyPans-Marron','18.000','Size: XL','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','DARK GREY NEW 2.jpg')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-Marron',90000, 'XL')">Tambahkan Ke Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="S">
+                    <img src="NAVY NEW 2.jpg" alt="Produk 10">
+                    <h3>Celana BaggyPans-Navvy</h3>
+                    <p>Size: S</p>
+                    <p class="price">Harga : Rp.18.000</p>
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Celana BaggyPans-Navvy','18.000','Size: S','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','DARK GREY NEW 2.jpg')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-Navvy',18000 ,'S')">Tambahkan Ke Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="L">
+                    <img src="LATTE 3.png" alt="Produk 11">
+                    <h3>Celana BaggyPans-Latte</h3>
+                    <p>Size: L</p>
+                    <p class="price">Harga : Rp.18.000</p>
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Celana BaggyPans-Latte','18.000','Size: L','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','LATTE 3.png')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-Latte',18000, 'L')">Tambahkan Ke Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="XL">
+                    <img src="NAVY BLUE 2.jpg" alt="Produk 12">
+                    <h3>Celana BaggyPans-NavvyBlue</h3>
+                    <p>Size: XL</p>
+                    <p class="price">Harga : Rp.18.000</p>
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Celana BaggyPans-NavvyBlue','18.000','Size: XL','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','NAVY BLUE 2.jpg')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-NavvyBlue',18000, 'XL')">Tambahkan Ke Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="XL">
+                    <img src="MAROON NEW 2.jpg" alt="Produk 9">
+                    <h3>Celana BaggyPans-Marron</h3>
+                    <p>Size: XL</p>
+                    <p class="price">Harga : Rp.18.000</p>
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Celana BaggyPans-Marron','18.000','Size: XL','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','DARK GREY NEW 2.jpg')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-Marron',18000, 'XL')">Tambahkan Ke Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="S">
+                    <img src="NAVY NEW 2.jpg" alt="Produk 10">
+                    <h3>Celana BaggyPans-Navvy</h3>
+                    <p>Size: S</p>
+                    <p class="price">Harga : Rp.18.000</p>
+                    <button class="tombol-beli"
+                        onclick= "tampilkanDetailProduk('Celana BaggyPans-Navvy','18.000','Size: S','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','DARK GREY NEW 2.jpg')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-Navvy',18000, 'S')">Tambahkan Ke Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="L">
+                    <img src="LATTE 3.png" alt="Produk 11">
+                    <h3>Celana BaggyPans-Latte</h3>
+                    <p>Size: L</p>
+                    <p class="price">Harga : Rp.18.000</p>
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Celana BaggyPans-Latte','18.000','Size: L','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','LATTE 3.png')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-Latte',18000, 'L')">Tambahkan Ke Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="XXL">
+                    <img src="NAVY BLUE 2.jpg" alt="Produk 12">
+                    <h3>Celana BaggyPans-NavvyBlue</h3>
+                    <p>Size: XXL</p>
+                    <p class="price">Harga : Rp.18.000</p>
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Celana BaggyPans-NavvyBlue','18.000','Size: XXL','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','NAVY BLUE 2.jpg')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-NavvyBlue',18000, 'XXL')">Tambahkan Ke Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="S">
+                    <img src="DUSTY PINK 4.jpg" alt="Produk 6">
+                    <h3>Celana BaggyPans-DustyPink</h3>
+                    <p>Size: S</p>
+                    <p class="price">Harga : Rp.18.000</p>
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Celana BaggyPans-DustyPink','18.000','Size: S','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','DARK GREY NEW 2.jpg')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-DustyPink',18.000, 'S')">Tambahkan Ke Keranjang</button><br />
+                </section>
+
+                <section class="product" data-kategori="S">
+                    <img src="LATTE NEW 9.jpg" alt="Produk 8">
+                    <h3>Celana BaggyPans-Latte</h3>
+                    <p>Size: S</p>
+                    <p class="price">Harga : Rp.18.000</p>
+                    <button class="tombol-beli"
+                        onclick="tampilkanDetailProduk('Celana BaggyPans-Latte','18.000','Size: S','Detail:<br> ~Langsung dari produsen tangan pertama,<br> ~harga lebih kompetitif dengan kualitas terbaik.<br>~Bahan AMERICAN DRILLPremium Quality<br>~Sifat kain : adem, jatuh banget, mudah diatur, tidak menerawang dan tebal<br>~Cocok buat yang ingin tampil cantik tapi tetap nyaman/adem dipakai<br>~Produk terbaru yang lagi hits banget dan wajib punya.<br>Ukuran bisa berbeda 1-2 cm dri ukuran disize chart tanyakan dlu sebelum dicek out<br>Your Daily Outfit Shop','DARK GREY NEW 2.jpg')">Detail
+                        Produk</button>
+                    <button class="tombol-keranjang"
+                        onclick="tambahkanProdukKeKeranjang('Celana BaggyPans-Latte',18000, 'S')">Tambahkan Ke Keranjang</button><br />
+                </section>
+
+
+                <!-- produk di sini -->
+
+
+            </div>
+            <div class="sidebar">
+                <h3>Kategori</h3>
+
+                <!-- Kategori Produk -->
+
+                <div class="kategori-pilihan">
+                    <input type="text" id="cariBarang" class="pncrian" placeholder="Cari Barang...." onkeyup="cariBarang()">
+                    <button onclick="filterKategori('all')">Semua</button><br />
+                    <button onclick="filterKategori('S')">S</button><br />
+                    <button onclick="filterKategori('L')">L</button><br />
+                    <button onclick="filterKategori('XL')">XL</button><br>
+                    <button onclick="filterKategori('XXL')">XXL</button>
+                </div>
+                <br /><br />
+                <!-- Keranjang Belanja-->
+                <div class="keranjang">
+                    <h3>Keranjang Belanja</h3>
+                    <ul id="daftar-keranjang">
+                        <!--Daftar produk yang ditambahkan ke keranjang akan ditampilkan disini-->
+                    </ul>
+                    <p>Total Belanja: <span id="total-belanja">Rp 0</span></p>
+                    <button id="checkout" onclick="checkout()">Checkout</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <p class="copyright">Copyright 2023. Toko zhafira by Aldriano.</p>
+        </div>
+    </div>
+
+    <!--Detail Produk (popup)-->
+
+    <script>
+
+        function tampilkanDetailProduk(namaProduk, hargaProduk, ukuranProduk ,detailProduk, gambarProduk) {
+            //popup ( detail lengkap )
+            const popup = document.createElement('div');
+            popup.className = 'popup';
+            popup.innerHTML = `
+
+        <div class="popup-content">
+            <span class="popup-close" onclick="tutupPopup()">&times;</span>
+            <img src="${gambarProduk}" alt="${namaProduk}"></img>
+            <h2>${namaProduk}</h2>
+            <h3>${ukuranProduk}</h3>
+            <p class="price">Harga : ${hargaProduk}</p>
+            <p>${detailProduk}</p>
+            <button onclick="tambahkanProdukKeKeranjang('${namaProduk}',${hargaProduk} ,'${ukuranProduk}')" class="tombol-beli" onclick= "">Beli Sekarang</button>
+        </div>
+    `;
+            document.body.appendChild(popup);
+        }
+
+        function tutupPopup() {
+            const popup = document.querySelector('.popup');
+            if (popup) {
+                document.body.removeChild(popup);
+            }
+        }
+    </script>
+
+    <!--Kategori Produk-->
+
+    <script>
+        function filterKategori(kategori) {
+            const produk = document.querySelectorAll('.product');
+            for (const produkItem of produk) {
+                const kategoriProduk = produkItem.getAttribute('data-kategori');
+                if (kategori == 'all' || kategori === kategoriProduk) {
+                    produkItem.style.display = 'block';
+                } else {
+                    produkItem.style.display = 'none';
+                }
+            }
+        }
+    </script>
+
+    <!--Cari Barang-->
+
+    <script>
+        function cariBarang() {
+            const inputPencarian = document.getElementById('cariBarang');
+            const kataKunci = inputPencarian.value.toLowerCase();
+            const produk = document.querySelectorAll('.product');
+
+            for (const produkItem of produk) {
+                const namaProduk = produkItem.querySelector('h3').textContent.toLowerCase();
+                const deskripsiProduk = produkItem.querySelector('p').textContent.toLowerCase();
+
+                if (namaProduk.includes(kataKunci) || deskripsiProduk.includes(kataKunci)) {
+                    produkItem.style.display = 'block';
+                } else {
+                    produkItem.style.display = 'none';
+                }
+            }
+        }
+    </script>
+
+    <!--Keranjang Belanja-->
+
+    <script>
+        const keranjang = [];
+        const totalBelanja = 0;
+
+        function tambahkanProdukKeKeranjang(namaProduk ,hargaProduk, ukuranProduk) {
+            // keranjang.push({ nama: namaProduk, harga: hargaProduk });
+            // updateKeranjang();
+            let produkDitemukan = false;
+            
+            for (let i= 0; i<keranjang.length; i++){
+                if(keranjang[i].nama === namaProduk ,keranjang[i].size === ukuranProduk){
+                    keranjang[i].jumlah++;
+                    produkDitemukan = true;
+                    break
+                }
+            }
+            if(produkDitemukan){
+                keranjang.push({nama: namaProduk, harga: hargaProduk, size: ukuranProduk,jumlah: 1})
+            }
+            updateKeranjang();
+        }
+
+        function updateKeranjang() {
+            const daftarKeranjang = document.getElementById('daftar-keranjang');
+            const totalBelanjaElem = document.getElementById('total-belanja');
+            daftarKeranjang.innerHTML = '';
+            let total = 0;
+            keranjang.forEach((produk) => {
+                const item = document.createElement('li');
+                const jumlahHarga = produk.jumlah * produk.harga;
+                item.textContent = `${produk.nama}- ${produk.size} - ${produk.jumlah}- Rp${produk.harga.toLocaleString("id-ID")} - Rp${jumlahHarga.toLocaleString("id-ID")}`;
+                daftarKeranjang.appendChild(item);
+                total += produk.jumlah * produk.harga ;
+            });
+            totalBelanjaElem.textContent = `Rp${total.toLocaleString("id-ID")}`;
+            sessionStorage.setItem('keranjangBelanja', JSON.stringify(keranjang));
+            document.cookie = `keranjangBelanja=${JSON.stringfy(daftarKeranjang)}`;
+        }
+
+        function checkout() {
+           window.location.href = "checkout( asli ).html"
+        }
+    </script>
+
+</body>
+</html>
